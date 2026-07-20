@@ -38,41 +38,41 @@ window.CERTS = [
   {
     "file": "AI Fundamentals.jpg",
     "title": "AI Fundamentals",
-    "href": ""
+    "href": "https://drive.google.com/file/d/1cZiAoYw2Kt-2XO8RZTIpXutQmZT1pv7L/view?usp=sharing"
   },
   {
     "file": "AI for App Building.jpg",
     "title": "AI for App Building",
-    "href": ""
+    "href": "https://drive.google.com/file/d/1gvgbibWnl-zigO2GZnXvNdTtHQ-4BZBa/view?usp=sharing"
   },
   {
     "file": "AI for Brainstorming and Planning.jpg",
     "title": "AI for Brainstorming and Planning",
-    "href": ""
+    "href": "https://drive.google.com/file/d/1SRuaV6ggFMIMvDftEsi_Mtct3ncAUdH3/view?usp=sharing"
   },
   {
     "file": "AI for Content Creation.jpg",
     "title": "AI for Content Creation",
-    "href": ""
+    "href": "https://drive.google.com/file/d/1aEr2Hr2Doa6URmVwfiOvMLS8e8pMVvl0/view?usp=sharing"
   },
   {
     "file": "AI for Data Analysis.jpg",
     "title": "AI for Data Analysis",
-    "href": ""
+    "href": "https://drive.google.com/file/d/1St8kU-kT5LcXLK1FFe5fUDB-1B-Wh0cI/view?usp=sharing"
   },
   {
     "file": "AI for Research and Insight.jpg",
     "title": "AI for Research and Insight",
-    "href": ""
+    "href": "https://drive.google.com/file/d/1af02adMbNG41BlRty9tWGW-bfopJzqzg/view?usp=sharing"
   },
   {
     "file": "AI for Writing and Communicating.jpg",
     "title": "AI for Writing and Communicating",
-    "href": ""
+    "href": "https://drive.google.com/file/d/1xjrTGLAinN1oPhQIki5l7uOGmd2uLl_f/view?usp=sharing"
   },
   {
     "file": "Google AI Professional Certificate.jpg",
     "title": "Google AI Professional Certificate",
-    "href": ""
+    "href": "https://drive.google.com/file/d/1SjUC9ENFIVs935dXitv4zb_YxZcUPuHV/view?usp=sharing"
   }
 ];
