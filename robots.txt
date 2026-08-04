@@ -1,0 +1,14 @@
+# robots.txt — Raj Patel Portfolio
+# https://portfolio-raj-25.netlify.app/
+
+User-agent: *
+Allow: /
+
+# Well-behaved AI crawlers welcome (remove a block below to disallow one)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://portfolio-raj-25.netlify.app/sitemap.xml
