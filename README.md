@@ -47,3 +47,8 @@ Everything is in `index.html`:
 ## Sections
 
 Hero → About + skill pillars → Certifications marquee → Projects (6) → Open-to-work CTA → Milestones → Contact footer.
+
+## Let's Connect !
+Portfolio Website: https://portfolio-raj-25.netlify.app/
+Linkedin: https://www.linkedin.com/in/raj-patel5/
+Github: https://github.com/R204570
