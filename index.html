@@ -1403,7 +1403,14 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-HYE7HGLNGX');
+  // cookie_domain:'none' => write _ga cookies on the exact hostname.
+  // Required on *.netlify.app: "netlify.app" is a Public Suffix, so gtag's
+  // default 'auto' tries domain=.netlify.app and the browser rejects it
+  // ("Cookie _ga has been rejected for invalid domain").
+  gtag('config', 'G-HYE7HGLNGX', {
+    cookie_domain: 'none',
+    cookie_flags: 'SameSite=Lax;Secure'
+  });
 </script>
 </body>
 </html>
