@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page not found | Raj Patel</title>
+<meta name="description" content="That page doesn't exist. Head back to Raj Patel's portfolio — AI Engineer & Full-Stack Developer.">
+<!-- error pages should never be indexed -->
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0E1016">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root {
+  --ink: #0E1016;
+  --line: #2a2f3d;
+  --bone: #e4ded7;
+  --bone-dim: #b9b3ac;
+  --steel: #95979D;
+  --amber: #ffaa40;
+  --violet: #9c40ff;
+  --grad: linear-gradient(92deg, var(--amber), var(--violet));
+  --display: 'Anton', 'Arial Narrow', sans-serif;
+  --body: 'Archivo', 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', 'Consolas', monospace;
+  --pad: clamp(20px, 5vw, 72px);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(48px, 9vw, 90px) var(--pad);
+  background: var(--ink); color: var(--bone);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  position: relative; overflow-x: hidden;
+}
+/* the same amber/violet bloom the site uses behind its hero */
+body::before, body::after {
+  content: ""; position: fixed; border-radius: 50%; pointer-events: none;
+  width: 46vmax; height: 46vmax; filter: blur(90px); opacity: .22; z-index: 0;
+}
+body::before { background: var(--amber); top: -14vmax; right: -12vmax; }
+body::after  { background: var(--violet); bottom: -18vmax; left: -14vmax; }
+.wrap { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; width: 100%; }
+.eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--steel); margin-bottom: 18px;
+}
+.eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--amber); flex: none; }
+h1 {
+  font-family: var(--display); text-transform: uppercase;
+  font-size: clamp(96px, 26vw, 300px); line-height: .82;
+  letter-spacing: -.01em;
+}
+h1 .hl {
+  color: transparent; background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+}
+.lead {
+  margin: clamp(22px, 3vw, 34px) 0 6px;
+  font-size: clamp(19px, 2.3vw, 27px); font-weight: 600;
+  text-wrap: balance; max-width: 24ch;
+}
+.sub { color: var(--bone-dim); font-size: 15px; max-width: 46ch; line-height: 1.6; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(30px, 4vw, 44px); }
+.btn-pill {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink); background: var(--bone);
+  border-radius: 999px; padding: 14px 26px; text-decoration: none;
+  transition: background .25s, transform .25s;
+}
+.btn-pill:hover { background: var(--amber); transform: translateY(-2px); }
+.btn-ghost {
+  color: var(--bone); background: transparent; border: 1px solid var(--line);
+}
+.btn-ghost:hover { background: transparent; border-color: var(--amber); color: #fff; }
+.jump {
+  display: flex; flex-wrap: wrap; gap: 12px 26px;
+  margin-top: clamp(38px, 5vw, 58px); padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase;
+}
+.jump a {
+  color: var(--bone-dim); text-decoration: none;
+  border-bottom: 1px solid transparent; transition: color .25s, border-color .25s;
+}
+.jump a:hover { color: var(--bone); border-color: var(--amber); }
+a:focus-visible, .btn-pill:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow">Error 404</p>
+    <h1>4<span class="hl">0</span>4</h1>
+    <p class="lead">This page took a wrong turn.</p>
+    <p class="sub">The link is broken or the page has moved. Everything worth seeing lives on the home page — projects, certifications and the fastest way to reach me.</p>
+    <div class="actions">
+      <a class="btn-pill" href="/">Back to portfolio</a>
+      <a class="btn-pill btn-ghost" href="/#contact">Get in touch</a>
+    </div>
+    <nav class="jump" aria-label="Sections">
+      <a href="/#about">About</a>
+      <a href="/#skills">Skills</a>
+      <a href="/#vault">Certifications</a>
+      <a href="/#work">Projects</a>
+      <a href="/#milestones">Milestones</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </main>
+</body>
+</html>

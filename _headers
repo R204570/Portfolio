@@ -9,6 +9,9 @@
   Cache-Control: public, max-age=2592000
 /icon-512.png
   Cache-Control: public, max-age=2592000
+/fonts.css
+  Content-Type: text/css; charset=utf-8
+  Cache-Control: public, max-age=2592000
 /assets/*
   Cache-Control: public, max-age=2592000
 /certificates/*
