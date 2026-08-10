@@ -1,6 +1,6 @@
 # Raj Patel — Portfolio
 
-Personal portfolio of **Raj Patel** — AI Engineer & Full-Stack Developer.
+Personal portfolio of **Raj Patel** — AI Engineer & Full-Stack Vibe Code Developer.
 Dark editorial single-page site focused on Agentic AI, AI Engineering (PyTorch / NLP / LLMs), Full-Stack development and Data Science.
 
 ## What's inside
