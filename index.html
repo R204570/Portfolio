@@ -464,6 +464,20 @@ section { padding: clamp(52px, 6.5vw, 92px) 0; }
 .split.in .c { transform: none; }
 .split .w.hl .c { color: transparent; background: var(--grad); -webkit-background-clip: text; background-clip: text; }
 
+/* "For Any Questions" collapses to its own acronym, FAQ.
+   Letter max-widths are locked in JS before .short is added, so the
+   collapse animates from each glyph's real width instead of a guess. */
+/* inline-block + pre so the gap keeps its width but max-width can still
+   collapse it — max-width is ignored on non-replaced inline elements */
+.morph .sp { display: inline-block; white-space: pre; }
+.morph .c, .morph .sp { overflow: hidden; }
+.morph.ready .c, .morph.ready .sp {
+  transition: transform .7s cubic-bezier(.22, 1, .36, 1),
+              max-width .6s cubic-bezier(.65, 0, .2, 1),
+              opacity .34s ease;
+}
+.morph.short .c:not(:first-child), .morph.short .sp { max-width: 0 !important; opacity: 0; }
+
 /* ============ ABOUT / STATEMENT ============ */
 .statement {
   font-size: clamp(44px, 7.4vw, 108px);
@@ -1171,7 +1185,7 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
 
 <section id="faq">
   <div class="wrap">
-    <h2 class="giant split">FAQ</h2>
+    <h2 class="giant split morph">For Any <span class="hl">Questions</span></h2>
     <p class="sub reveal">The questions recruiters and collaborators ask most</p>
     <div class="mile-grid">
       <div class="mile reveal">
@@ -1554,6 +1568,52 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
   document.querySelectorAll('.reveal, .split').forEach(function (el) {
     if (reduced) { el.classList.add('in'); } else { io.observe(el); }
   });
+
+  // FAQ heading: let "For Any Questions" land, then collapse it to "FAQ".
+  // Only the first letter of each word survives, and "Questions" keeps the
+  // gradient, so the shortened form reads F A in bone with a coloured Q.
+  (function () {
+    var h = document.querySelector('#faq h2.morph');
+    if (!h) return;
+
+    // The splitter leaves inter-word gaps as bare text nodes, which cannot be
+    // animated. Wrap them here only — the shared splitter is left untouched so
+    // no other giant heading changes its wrapping behaviour.
+    Array.prototype.slice.call(h.childNodes).forEach(function (n) {
+      if (n.nodeType === 3 && /^\s+$/.test(n.textContent)) {
+        var sp = document.createElement('span');
+        sp.className = 'sp';
+        sp.textContent = ' ';
+        h.replaceChild(sp, n);
+      }
+    });
+
+    var collapse = function () {
+      // Only the letters that collapse get a locked width. The surviving
+      // first letters keep their natural width, so a late-settling font can
+      // never leave them clipped.
+      h.querySelectorAll('.w .c:not(:first-child), .sp').forEach(function (n) {
+        n.style.maxWidth = n.getBoundingClientRect().width + 'px';
+      });
+      // one frame with the widths applied, so the transition has a start value
+      requestAnimationFrame(function () {
+        h.classList.add('ready');
+        requestAnimationFrame(function () { h.classList.add('short'); });
+      });
+    };
+
+    if (reduced) { collapse(); return; }
+
+    var mio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        mio.disconnect();
+        // ~1.05s covers the staggered letter reveal (.7s + per-letter delay)
+        setTimeout(collapse, 1450);
+      });
+    }, { threshold: [0, 0.18], rootMargin: '0px 0px -6% 0px' });
+    mio.observe(h);
+  })();
 })();
 </script>
   <!-- Google tag (gtag.js) -->
