@@ -1,4 +1,14 @@
 # Netlify headers — long cache for immutable static assets, correct content-types
+
+# Crawling is open by policy. X-Robots-Tag states it at the HTTP layer, which
+# some agents read instead of (or before) robots.txt.
+/*
+  X-Robots-Tag: all
+  Access-Control-Allow-Origin: *
+
+/404.html
+  X-Robots-Tag: noindex, follow
+
 /og-image.png
   Cache-Control: public, max-age=2592000
 /og-image.jpg
