@@ -101,6 +101,13 @@
         "@type": "Demand",
         "name": "AI Engineering, Agentic AI and Data Science roles, plus freelance builds"
       },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Professional enquiries",
+        "email": "rajpatel9408019@gmail.com",
+        "url": "https://portfolio-raj-25.netlify.app/#contact",
+        "availableLanguage": ["English", "Hindi", "Gujarati"]
+      },
       "sameAs": [
         "https://github.com/R204570",
         "https://www.linkedin.com/in/raj-patel5",
@@ -335,6 +342,96 @@ nav .links a {
   transition: border-color .25s, color .25s;
 }
 nav .links a:hover { border-color: var(--amber); color: #fff; }
+
+/* ============ GLASS NAV ============ */
+/* Floating section switcher. Stays out of the way until the hero is behind
+   you, then rides along. Glass here is doing a job: the bar sits over moving
+   content, so it has to read as a layer above the page rather than a band cut
+   out of it. */
+.glass-nav {
+  /* the generic `nav` rule above absolutely-positions the hero nav — undo it */
+  position: fixed; top: 18px; left: 50%; right: auto;
+  transform: translate(-50%, -160%);
+  z-index: 90; padding: 0;
+  display: block; width: max-content; max-width: calc(100vw - 24px);
+  opacity: 0; pointer-events: none;
+  transition: transform .72s cubic-bezier(.16, 1, .3, 1), opacity .4s ease;
+}
+.glass-nav.show { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+
+.gn-shell {
+  position: relative;
+  display: flex; align-items: center; gap: 2px;
+  padding: 5px;
+  border-radius: 999px;
+  /* liquid glass: refracted backdrop + a lit top edge + real cast shadow */
+  background: linear-gradient(180deg, rgba(255, 255, 255, .11), rgba(255, 255, 255, .035));
+  -webkit-backdrop-filter: blur(22px) saturate(190%);
+  backdrop-filter: blur(22px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, .13);
+  box-shadow:
+    0 18px 40px -14px rgba(0, 0, 0, .7),
+    0 2px 8px -2px rgba(0, 0, 0, .45),
+    inset 0 1px 0 rgba(255, 255, 255, .2),
+    inset 0 -1px 0 rgba(0, 0, 0, .25);
+  overflow: hidden;
+}
+/* the rim stays crisp on the shell; only this inner track scrolls, so the
+   edge fade never eats the glass border */
+.gn-track {
+  position: relative;
+  display: flex; align-items: center; gap: 2px;
+  overflow-x: auto; overflow-y: hidden;
+  scrollbar-width: none; -ms-overflow-style: none;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+}
+.gn-track::-webkit-scrollbar { display: none; }
+
+.glass-nav a {
+  position: relative; z-index: 1; flex: none;
+  scroll-snap-align: center;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 500;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: var(--bone-dim); text-decoration: none; white-space: nowrap;
+  padding: 10px 15px; border-radius: 999px;
+  transition: color .3s ease;
+}
+.glass-nav a:hover { color: var(--bone); }
+.glass-nav a.on { color: var(--ink); }
+.glass-nav a.gn-cta { color: var(--amber); }
+.glass-nav a.gn-cta:hover { color: #ffc37a; }
+.glass-nav a.gn-cta.on { color: var(--ink); }
+
+/* the travelling lozenge — the one piece of motion this component owns */
+.gn-pill {
+  position: absolute; z-index: 0; top: 5px; left: 0;
+  height: calc(100% - 10px); width: 0;
+  border-radius: 999px;
+  background: var(--bone);
+  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, .5);
+  opacity: 0;
+  transition: transform .55s cubic-bezier(.16, 1, .3, 1),
+              width .55s cubic-bezier(.16, 1, .3, 1),
+              opacity .3s ease;
+}
+.gn-pill.lit { opacity: 1; }
+
+@media (max-width: 620px) {
+  .glass-nav { top: 10px; max-width: calc(100vw - 16px); }
+  .glass-nav a { font-size: 10.5px; padding: 9px 13px; letter-spacing: .1em; }
+  /* the row overflows here — fade both ends so it reads as scrollable
+     instead of as text clipped by the rim */
+  .gn-track {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+    scroll-padding-inline: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-nav { transition: opacity .2s ease; transform: translate(-50%, 0); }
+  .gn-pill { transition: opacity .2s ease; }
+}
 
 /* ============ HERO ============ */
 header {
@@ -807,6 +904,21 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
 <div id="cursor-ring" aria-hidden="true"><i></i></div>
 <div id="scroll-progress" aria-hidden="true"></div>
 
+<nav class="glass-nav" id="glass-nav" aria-label="Section navigation">
+  <div class="gn-shell">
+    <div class="gn-track">
+      <span class="gn-pill" aria-hidden="true"></span>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#vault">Certificates</a>
+      <a href="#work">Projects</a>
+      <a href="#milestones">Milestones</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="gn-cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
 <div id="loader" aria-hidden="true">
   <div class="words">
     <span>Building agents.</span>
@@ -818,8 +930,8 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
 <nav>
   <a class="btn-pill" href="#contact">Get in touch</a>
   <div class="links">
-    <a href="https://github.com/R204570" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/raj-patel5" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/R204570" target="_blank" rel="me noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/raj-patel5" target="_blank" rel="me noopener">LinkedIn</a>
     <a href="Raj-Patel-Resume.pdf" download>Resume</a>
   </div>
 </nav>
@@ -1182,7 +1294,7 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
       <div class="mile reveal">
         <span class="tag">Availability</span>
         <h3>Is Raj Patel available for hire?</h3>
-        <p>Yes. Raj is open to AI Engineering, Agentic AI and Data Science roles, and also takes on freelance builds. The fastest way to reach him is email at <a href="mailto:rajpatel9408019@gmail.com">rajpatel9408019@gmail.com</a> or via <a href="https://www.linkedin.com/in/raj-patel5" target="_blank" rel="noopener">LinkedIn</a>.</p>
+        <p>Yes. Raj is open to AI Engineering, Agentic AI and Data Science roles, and also takes on freelance builds. The fastest way to reach him is email at <a href="mailto:rajpatel9408019@gmail.com">rajpatel9408019@gmail.com</a> or via <a href="https://www.linkedin.com/in/raj-patel5" target="_blank" rel="me noopener">LinkedIn</a>.</p>
       </div>
       <div class="mile reveal">
         <span class="tag">Work</span>
@@ -1213,12 +1325,14 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
     <p class="eyebrow reveal">Contact</p>
     <h2 class="giant statement split">Say <span class="hl">hello.</span></h2>
     <div class="contact-grid">
-      <div class="c-info reveal">
+      <div class="c-info reveal h-card">
+        <span class="p-name sr-only">Raj Patel</span>
+        <span class="p-job-title sr-only">AI Engineer &amp; Full-Stack Developer</span>
         <p class="c-lead">Got a role, a project, or a wild AI idea? My inbox is open — I usually reply within a day.</p>
         <div class="c-row">
           <span class="c-label">Email</span>
           <div class="c-value">
-            <a href="mailto:rajpatel9408019@gmail.com">rajpatel9408019@gmail.com</a>
+            <a class="u-email" href="mailto:rajpatel9408019@gmail.com">rajpatel9408019@gmail.com</a>
             <button type="button" id="copy-mail" class="copy-btn">Copy</button>
           </div>
         </div>
@@ -1232,15 +1346,23 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
         </div>
         <div class="c-row">
           <span class="c-label">LinkedIn</span>
-          <div class="c-value"><a href="https://www.linkedin.com/in/raj-patel5" target="_blank" rel="noopener">/in/raj-patel5</a></div>
+          <div class="c-value"><a class="u-url" href="https://www.linkedin.com/in/raj-patel5" target="_blank" rel="me noopener">linkedin.com/in/raj-patel5</a></div>
         </div>
         <div class="c-row">
           <span class="c-label">GitHub</span>
-          <div class="c-value"><a href="https://github.com/R204570" target="_blank" rel="noopener">@R204570</a></div>
+          <div class="c-value"><a class="u-url" href="https://github.com/R204570" target="_blank" rel="me noopener">github.com/R204570</a></div>
         </div>
         <div class="c-row">
           <span class="c-label">Medium</span>
-          <div class="c-value"><a href="https://medium.com/@rajpatel9408019" target="_blank" rel="noopener">@rajpatel9408019</a></div>
+          <div class="c-value"><a class="u-url" href="https://medium.com/@rajpatel9408019" target="_blank" rel="me noopener">medium.com/@rajpatel9408019</a></div>
+        </div>
+        <div class="c-row">
+          <span class="c-label">Kaggle</span>
+          <div class="c-value"><a class="u-url" href="https://www.kaggle.com/raj072004" target="_blank" rel="me noopener">kaggle.com/raj072004</a></div>
+        </div>
+        <div class="c-row">
+          <span class="c-label">Instagram</span>
+          <div class="c-value"><a class="u-url" href="https://www.instagram.com/_raj_patel_45" target="_blank" rel="me noopener">@_raj_patel_45</a></div>
         </div>
       </div>
       <form class="c-form reveal" id="contact-form">
@@ -1280,10 +1402,10 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
       <span>&copy; 2026 Raj Patel — Ahmedabad, India</span>
       <div class="socials">
         <a href="mailto:rajpatel9408019@gmail.com">Email</a>
-        <a href="https://github.com/R204570" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/raj-patel5" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://medium.com/@rajpatel9408019" target="_blank" rel="noopener">Medium</a>
-        <a href="https://www.instagram.com/_raj_patel_45" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/R204570" target="_blank" rel="me noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/raj-patel5" target="_blank" rel="me noopener">LinkedIn</a>
+        <a href="https://medium.com/@rajpatel9408019" target="_blank" rel="me noopener">Medium</a>
+        <a href="https://www.instagram.com/_raj_patel_45" target="_blank" rel="me noopener">Instagram</a>
       </div>
     </div>
   </div>
@@ -1563,6 +1685,74 @@ footer .foot-row a:hover { color: var(--bone); border-color: var(--amber); }
   document.querySelectorAll('.reveal, .split').forEach(function (el) {
     if (reduced) { el.classList.add('in'); } else { io.observe(el); }
   });
+
+  // Glass nav: appears once the hero is behind you, tracks the section you're
+  // in, and slides a lozenge under the active link.
+  (function () {
+    var nav = document.getElementById('glass-nav');
+    if (!nav) return;
+    var shell = nav.querySelector('.gn-track');
+    var pill = nav.querySelector('.gn-pill');
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var current = -1;
+
+    function movePill(i) {
+      var a = links[i];
+      if (!a) { pill.classList.remove('lit'); return; }
+      // the pill is absolutely positioned inside the scroll container, so it
+      // already travels with the content — do not subtract scrollLeft here
+      pill.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+      pill.style.width = a.offsetWidth + 'px';
+      pill.classList.add('lit');
+    }
+    function setActive(i) {
+      if (i === current) return;
+      current = i;
+      links.forEach(function (a, j) {
+        var on = j === i;
+        a.classList.toggle('on', on);
+        if (on) { a.setAttribute('aria-current', 'true'); } else { a.removeAttribute('aria-current'); }
+      });
+      movePill(i);
+      // keep the active chip in view when the bar is scrollable (mobile)
+      if (links[i] && shell.scrollWidth > shell.clientWidth) {
+        shell.scrollTo({
+          left: links[i].offsetLeft - (shell.clientWidth - links[i].offsetWidth) / 2,
+          behavior: reduced ? 'auto' : 'smooth'
+        });
+      }
+    }
+    // show/hide once past the hero
+    var header = document.querySelector('header');
+    function onScroll() {
+      var past = window.scrollY > (header ? header.offsetHeight * 0.62 : 400);
+      nav.classList.toggle('show', past);
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { if (current > -1) movePill(current); }, { passive: true });
+
+    // scroll-spy: the last section whose top has crossed the upper third wins.
+    // Measured against the viewport, not offsetTop — offsetTop is relative to
+    // the offsetParent, which put the active chip a section behind.
+    function spy() {
+      var line = window.innerHeight * 0.32;
+      var best = -1;
+      targets.forEach(function (el, i) {
+        if (el && el.getBoundingClientRect().top <= line) best = i;
+      });
+      // #cta sits between Projects and Milestones and has no chip; falling back
+      // to the last crossed target keeps Projects lit across it.
+      setActive(best);
+    }
+    spy();
+    window.addEventListener('scroll', spy, { passive: true });
+    // fonts settling changes offsets — re-measure once they're in
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { if (current > -1) movePill(current); });
+    }
+  })();
 
   // FAQ heading: let "For Any Questions" land, then collapse it to "FAQ".
   // Only the first letter of each word survives, and "Questions" keeps the
