@@ -758,7 +758,10 @@ section { padding: clamp(52px, 6.5vw, 92px) 0; }
   color: var(--steel); margin-left: 10px; letter-spacing: .05em;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.shot img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+/* height:auto is load-bearing — the width/height attributes on these imgs are
+   presentational hints, and without it the height attribute beats aspect-ratio
+   and the shot renders at its full intrinsic height instead of cropping. */
+.shot img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
 
 /* CSS terminal mock for repos without live screenshots */
 .term {
