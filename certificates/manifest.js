@@ -11,11 +11,6 @@ window.CERTS = [
     "href": "https://drive.google.com/file/d/1tkj5wg-F0-4ZDXphDuqYg5CqXSY9AYNj/view"
   },
   {
-    "file": "CPTE - Certified Penetration Testing Engineer.jpg",
-    "title": "CPTE - Certified Penetration Testing Engineer",
-    "href": "https://drive.google.com/file/d/14GhWWm-W61zGIhziyXJTzulcRXn3sfe9/view"
-  },
-  {
     "file": "IELTS - Overall 7.0 - CEFR C1.jpg",
     "title": "IELTS - Overall 7.0 - CEFR C1",
     "href": "https://drive.google.com/file/d/1xTo7HGPQPAFa1i58keIJwbAopnTyXBPq/view"
