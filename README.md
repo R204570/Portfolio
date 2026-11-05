@@ -42,7 +42,7 @@ Everything is in `index.html`:
 - **Projects** — each `<article class="project">` block; badges are the `<span>`s inside `.p-tags`.
 - **Certifications marquee** — the `.cert-chip` spans (the set is duplicated once for the seamless loop — edit both copies).
 - **Milestones** — the `.mile` cards.
-- **Contact** — search for `rajpatel9408019@gmail.com`.
+- **Contact** — search for `raj.patel.connects@gmail.com`.
 
 ## Sections
 
